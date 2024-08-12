@@ -404,7 +404,7 @@ if st.session_state.get('logged_in'):
 
         if st.button('Predict'):
         
-            user_df = pd.DataFrame([input_data])
+            user_df = pd.DataFrame(input_data)
                 
             user_df_processed = preprocessor.transform(user_df)
                 
