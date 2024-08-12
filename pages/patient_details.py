@@ -228,7 +228,7 @@ if st.session_state.get('logged_in'):
                 }
                 
             
-                user_df = pd.DataFrame(s)
+                user_df = pd.DataFrame([s])
                 
                 user_df_processed = preprocessor.transform(user_df)
                 
