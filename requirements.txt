@@ -1,0 +1,9 @@
+streamlit
+pymongo
+bcrypt
+pandas
+gradio_client
+joblib 
+scikit-learn 
+xgboost
+pillow
