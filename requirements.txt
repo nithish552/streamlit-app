@@ -9,5 +9,4 @@ xgboost
 pillow
 secure-smtplib
 openpyxl
-smtplib
 time
