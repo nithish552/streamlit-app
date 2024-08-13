@@ -229,25 +229,25 @@ if st.session_state.get('logged_in'):
         </style>
         <div class="description-container"> 
             
-            | Attributes                 | Description                                                                                   | 
-            |----------------------------|---------------------------------------------------------------------------------------------------| 
-            | Age                        | The age category maybe greater than 18                                                            | 
-            | Gender                     | The field values are either Male or Female                                                        |  
-            | Race                       | The ethnicity of the patient                                                                      | 
-            | Insurance Type             | They are commercial or non-commercial                                                             |
-            | Median Income              | The average income of the patient                                                                 | 
-            | Hospitalization Prior Year | Whether they have been hospitalized the prior year (YES/NO)                            |
-            | MS Related Hospitalization | Whether affected or has any symptoms of Multiple sclerosis (YES/NO)                      |
-            | Relapse Prior Year         | Whether they had a relapse in the prior year (YES/NO)                                             |
-            | Disease                    | We have majorly 4 diseases ("BIPOLAR 1 DISORDER", "ASTHMA", "HYPERTENSION", "DIABETES MELLITUS")  | 
-            | Therapeutic Area           | Particular area of the disease ("PSYCHIATRY", "PULMONOLOGY", "CARDIOLOGY", "ENDOCRINOLOGY")       |
+            | Attributes                 | Description                                                                                        | 
+            |----------------------------|----------------------------------------------------------------------------------------------------| 
+            | Age                        | The age category maybe greater than 18                                                             | 
+            | Gender                     | The field values are either Male or Female                                                         |  
+            | Race                       | The ethnicity of the patient                                                                       | 
+            | Insurance Type             | They are commercial or non-commercial                                                              |
+            | Median Income              | The average income of the patient                                                                  | 
+            | Hospitalization Prior Year | Whether they have been hospitalized the prior year (YES/NO)                                        |
+            | MS Related Hospitalization | Whether affected or has any symptoms of Multiple sclerosis (YES/NO)                                |
+            | Relapse Prior Year         | Whether they had a relapse in the prior year (YES/NO)                                              |
+            | Disease                    | We have majorly 4 diseases ("BIPOLAR 1 DISORDER", "ASTHMA", "HYPERTENSION", "DIABETES MELLITUS")   | 
+            | Therapeutic Area           | Particular area of the disease ("PSYCHIATRY", "PULMONOLOGY", "CARDIOLOGY", "ENDOCRINOLOGY")        |
             | Specialty Pharma           | Majorly we have 4 pharma brands ("LITHIUM", "INHALED CORTICOSTEROIDS", "ACE INHIBITORS", "INSULIN")|
-            | Trial Length (Weeks)       | Input in weeks count                                                                             |
-            | Micro Reimbursements       | Whether it is available or not                                                                   |
-            | Dose Length (Seconds)      | Length of a single dose                                                                          |
-            | Dose Delay (Hours)         | The gap/rest between doses                                                                       |
-            | Medication Name            | Name of the medication he/she is taking                                                          |
-            | Brand Name                 | Brand name of the medication                                                                     |
+            | Trial Length (Weeks)       | Input in weeks count                                                                               |
+            | Micro Reimbursements       | Whether it is available or not                                                                     |
+            | Dose Length (Seconds)      | Length of a single dose                                                                            |
+            | Dose Delay (Hours)         | The gap/rest between doses                                                                         |
+            | Medication Name            | Name of the medication he/she is taking                                                            |
+            | Brand Name                 | Brand name of the medication                                                                       |
         </div>
         """,
         unsafe_allow_html=True
