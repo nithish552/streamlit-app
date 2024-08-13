@@ -43,7 +43,7 @@ def send_email(to_email, subject, message):
 
 if st.session_state.get('logged_in'):
     
-    st.title("Embedded Power BI Dashboard")
+    st.title("Power BI Dashboard")
     st.markdown(
         """
         <style>
