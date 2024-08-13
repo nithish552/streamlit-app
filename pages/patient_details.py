@@ -76,7 +76,7 @@ if st.session_state.get('logged_in'):
             padding: 10px;
             border-radius: 10px;
         }
-        [class="st-emotion-cache-uzeiqp e1nzilvr4"] {
+        [class="st-emotion-cache-asc41u e1nzilvr2"] {
             background-color: white;
             padding: 10px;
             border-radius: 10px;
