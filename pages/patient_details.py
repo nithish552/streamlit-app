@@ -4,7 +4,7 @@ import numpy as np
 import joblib
 import re
 from sklearn.pipeline import Pipeline
-# from xgboost import XGBClassifier
+from xgboost import XGBClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from sklearn.compose import ColumnTransformer
@@ -203,11 +203,63 @@ if st.session_state.get('logged_in'):
     """,
     unsafe_allow_html=True
     )
+    st.markdown("""
+                ##### Description of Features 
+            ##### This app is designed to predict the patients / users who are adherent to a speciality pharma brand. You can input the features of the patient demographics and other details for the result. Provide a XLSX sheet with these features updated in them for each user.""", unsafe_allow_html= True)
+    st.markdown(
+        """
+        <style>
+            .description-container {
+                background-color: #F0F0F0;
+                padding: 20px;
+                border-radius: 10px;
+            }
+            .description-container h5 {
+                color: #4F4F4F;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 10px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+        </style>
+        <div class="description-container"> 
+            
+            | Attributes                 | Description                                                                                   | 
+            |----------------------------|---------------------------------------------------------------------------------------------------| 
+            | Age                        | The age category maybe greater than 18                                                            | 
+            | Gender                     | The field values are either Male or Female                                                        |  
+            | Race                       | The ethnicity of the patient                                                                      | 
+            | Insurance Type             | They are commercial or non-commercial                                                             |
+            | Median Income              | The average income of the patient                                                                 | 
+            | Hospitalization Prior Year | Whether they have been hospitalized the prior year (YES/NO)                            |
+            | MS Related Hospitalization | Whether affected or has any symptoms of Multiple sclerosis (YES/NO)                      |
+            | Relapse Prior Year         | Whether they had a relapse in the prior year (YES/NO)                                             |
+            | Disease                    | We have majorly 4 diseases ("BIPOLAR 1 DISORDER", "ASTHMA", "HYPERTENSION", "DIABETES MELLITUS")  | 
+            | Therapeutic Area           | Particular area of the disease ("PSYCHIATRY", "PULMONOLOGY", "CARDIOLOGY", "ENDOCRINOLOGY")       |
+            | Specialty Pharma           | Majorly we have 4 pharma brands ("LITHIUM", "INHALED CORTICOSTEROIDS", "ACE INHIBITORS", "INSULIN")|
+            | Trial Length (Weeks)       | Input in weeks count                                                                             |
+            | Micro Reimbursements       | Whether it is available or not                                                                   |
+            | Dose Length (Seconds)      | Length of a single dose                                                                          |
+            | Dose Delay (Hours)         | The gap/rest between doses                                                                       |
+            | Medication Name            | Name of the medication he/she is taking                                                          |
+            | Brand Name                 | Brand name of the medication                                                                     |
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     if input_method == "Upload XLSX":
         df1 = ""
         uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
         if uploaded_file is not None:
             df1 = pd.read_excel(uploaded_file)
+            df1["Recommendation"] = ""
+            df1["Adherence"] = ""
+            st.write(df1)
             s = {}
             for index, row in df1.iterrows():
                 s = {}
@@ -259,7 +311,7 @@ if st.session_state.get('logged_in'):
                     """,
                     unsafe_allow_html=True
                 )
-                df1[index, 'Adherence'] = predicted_adherence
+                df1.loc[index, 'Adherence'] = predicted_adherence
                 if predicted_adherence == "NON-ADHERENT":
                     client = Client("yuva2110/vanilla-charbot")
                     result = client.predict(
@@ -307,7 +359,7 @@ if st.session_state.get('logged_in'):
                         top_p=0.95,
                         api_name="/chat"
                     )
-                df1[index, 'Recommendation'] = result
+                df1.loc[index, 'Recommendation'] = result
                 save_path = "updated_file.xlsx"
                 df1.to_excel(save_path, index=False, engine='openpyxl')
                 st.success(f"File saved as {save_path}")
