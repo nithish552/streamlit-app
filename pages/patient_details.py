@@ -366,7 +366,7 @@ if st.session_state.get('logged_in'):
                 df1.loc[index, 'Recommendation'] = result
                 save_path = "updated_file.xlsx"
                 df1.to_excel(save_path, index=False, engine='openpyxl')
-                st.success(f"File saved as {save_path}")
+                # st.success(f"File saved as {save_path}")
             st.markdown(
                 f"""
                 <div style="background-color: #b2b2b2; padding: 10px; border-radius: 5px; text-align: center;">
