@@ -255,6 +255,8 @@ if st.session_state.get('logged_in'):
     if input_method == "Upload XLSX":
         df1 = ""
         uploaded_file = st.file_uploader("Choose a file", type = 'xlsx')
+        Adherent_count = 0
+        NonAdherent_count = 0
         if uploaded_file is not None:
             df1 = pd.read_excel(uploaded_file)
             df1["Recommendation"] = ""
@@ -290,27 +292,29 @@ if st.session_state.get('logged_in'):
                 predicted_adherence = le_y.inverse_transform(user_prediction)[0]
 
                 if(predicted_adherence == 'ADHERENT'):
-                    st.markdown(
-                        f"""
-                        <div style="background-color: #b2b2b2; padding: 10px; border-radius: 5px; text-align: center;">
-                            <span style="color: #000000; font-weight: bold;">
-                                Predicted Adherence: {predicted_adherence} &nbsp;&nbsp; 😊
-                            </span>
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
+                    # st.markdown(
+                    #     f"""
+                    #     <div style="background-color: #b2b2b2; padding: 10px; border-radius: 5px; text-align: center;">
+                    #         <span style="color: #000000; font-weight: bold;">
+                    #             Predicted Adherence: {predicted_adherence} &nbsp;&nbsp; 😊
+                    #         </span>
+                    #     </div>
+                    #     """,
+                    #     unsafe_allow_html=True
+                    # )
+                    Adherent_count += 1
                 else:
-                    st.markdown(
-                    f"""
-                    <div style="background-color: #b2b2b2; padding: 10px; border-radius: 5px; text-align: center;">
-                        <span style="color: #000000; font-weight: bold;">
-                            Predicted Adherence: {predicted_adherence} &nbsp;&nbsp; 🙁
-                        </span>
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
+                #     st.markdown(
+                #     f"""
+                #     <div style="background-color: #b2b2b2; padding: 10px; border-radius: 5px; text-align: center;">
+                #         <span style="color: #000000; font-weight: bold;">
+                #             Predicted Adherence: {predicted_adherence} &nbsp;&nbsp; 🙁
+                #         </span>
+                #     </div>
+                #     """,
+                #     unsafe_allow_html=True
+                # )
+                    NonAdherent_count += 1
                 df1.loc[index, 'Adherence'] = predicted_adherence
                 if predicted_adherence == "NON-ADHERENT":
                     client = Client("yuva2110/vanilla-charbot")
@@ -363,7 +367,17 @@ if st.session_state.get('logged_in'):
                 save_path = "updated_file.xlsx"
                 df1.to_excel(save_path, index=False, engine='openpyxl')
                 st.success(f"File saved as {save_path}")
-
+            st.markdown(
+                f"""
+                <div style="background-color: #b2b2b2; padding: 10px; border-radius: 5px; text-align: center;">
+                    <span style="color: #000000; font-weight: bold;">
+                        Predicted Adherence count: {Adherent_count} <br>
+                        Predicted Non-Adherence count: {NonAdherent_count}
+                    </span>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
             # Provide a download link
             with open(save_path, "rb") as file:
                 btn = st.download_button(
